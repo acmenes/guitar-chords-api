@@ -9,8 +9,12 @@ const router = new express.Router({ mergeParams: true });
 
 /** Get all the chords in the database */
 router.get("/", cors({origin: '*'}), async function(req, res, next){
-    const chords = await Chord.getAllChords();
-    return res.json({ chords })
+    try{ 
+        const chords = await Chord.getAllChords();
+        return res.json({ chords })
+    } catch(err) {
+        return next(err)
+    }
 });
 
 /** Get a single chord by its name */

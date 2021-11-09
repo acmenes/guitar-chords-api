@@ -61,8 +61,12 @@ app.use(function (req, res, next) {
   });
 
 app.get('/', cors(), function (req, res, next){
-  res.set('Access-Control-Allow-Origin', '*');
-  res.send({ "msg": "This has CORS enabled" })
+  try{ 
+    res.set('Access-Control-Allow-Origin', '*');
+    res.send({ "msg": "This has CORS enabled" })
+  } catch(err) {
+    return next(err)
+  }
 });
  
 app.listen(PORT, () => {
