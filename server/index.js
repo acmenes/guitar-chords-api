@@ -56,6 +56,10 @@ app.use("/progressions", progressionRoutes)
 //   next();
 // });
 
+app.use("/", function (req, res, next){
+  return "home page"
+});
+
 app.use(function (req, res, next) {
     return next(new NotFoundError());
   });
